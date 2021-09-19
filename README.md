@@ -22,10 +22,15 @@ A burger ordering application made using React JS which enables users to make a 
 then
 <pre>npm start</pre>
 
+## Deployment 🚀
+
+<a href="https://burger-order-app.vercel.app/">Link</a>
+
+<pre>npm install</pre>
+then
+<pre>npm start</pre>
 
 
-
-> This project is inspired by the amazing tutor Sir Maximilian Schwarzmüller.
 #### License
 
 MIT License
