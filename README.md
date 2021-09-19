@@ -24,12 +24,9 @@ then
 
 ## Deployment 🚀
 
-<a href="https://burger-order-app.vercel.app/">Link</a>
-
-<pre>npm install</pre>
-then
-<pre>npm start</pre>
-
+<pre>
+<a href="https://burger-order-app.vercel.app/">Link to the app</a>
+</pre>
 
 #### License
 
