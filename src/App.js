@@ -1,10 +1,13 @@
 import React, { useEffect, Suspense } from 'react';
 import { Route, Switch, withRouter, Redirect } from "react-router-dom"
 import { connect } from "react-redux"
+
+import NotFound from "./components/NotFound/NotFound"
 import Layout from "./containers/Layout/Layout"
 import BurgerBuilder from "./containers/BurgerBuilder/BurgerBuilder"
-import * as actions from "./store/actions/index"
 import Logout from './containers/Auth/Logout/Logout';
+
+import * as actions from "./store/actions/index"
 
 const Checkout = React.lazy(() => {
   return import("./containers/Checkout/Checkout")
@@ -29,7 +32,7 @@ const App = props => {
     <Switch>
       <Route path="/auth" render={props => <Auth {...props} />} />
       <Route path="/" exact component={BurgerBuilder} />
-      <Redirect to="/" />
+      <Route component={NotFound} />
     </Switch>
   )
 
@@ -41,7 +44,7 @@ const App = props => {
         <Route path="/logout" component={Logout} />
         <Route path="/auth" render={props => <Auth {...props} />} />
         <Route path="/" exact component={BurgerBuilder} />
-        <Redirect to="/" />
+        <Route component={NotFound} />
       </Switch>
     )
   }

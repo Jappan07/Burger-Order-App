@@ -40,7 +40,7 @@ const Auth = props => {
         },
     })
 
-    const [isSignup, setIsSignup] = useState(true)
+    const [isSignup, setIsSignup] = useState(false)
     const { buildingBurger, authRedirectPath, onSetAuthRedirectPath } = props
 
     useEffect(() => {
@@ -90,6 +90,10 @@ const Auth = props => {
         setIsSignup(!isSignup)
     }
 
+    const signInAsGuest = () => {
+        props.onAuth("guest@gmail.com", "guestlogin", isSignup)
+    }
+
     const formElementsArray = []
     for (let key in controls) {
         formElementsArray.push({
@@ -136,10 +140,20 @@ const Auth = props => {
             <form onSubmit={submitHandler}>
                 {form}
                 <Button btnType="Success">SUBMIT</Button>
+                {
+                    !isSignup
+                        ? <Button
+                            clicked={signInAsGuest}
+                            btnType="Success">
+                            Guest Login
+                        </Button>
+                        : null
+                }
             </form>
             <Button
                 clicked={switchAuthModeHandler}
-                btnType="Danger">SWITCH TO {isSignup ? "SIGNIN" : "SIGNUP"}</Button>
+                btnType="Danger">SWITCH TO {isSignup ? "SIGNIN" : "SIGNUP"}
+            </Button>
         </div>
     )
 }
