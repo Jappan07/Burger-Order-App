@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { connect } from "react-redux"
 import Button from "../../../components/UI/Button/Button"
 import Spinner from "../../../components/UI/Spinner/Spinner"
@@ -94,11 +94,26 @@ const ContactData = props => {
         },
     })
 
+    useEffect(() => {
+        console.log(props)
+        setOrderForm(prevState => {
+            return {
+                ...prevState,
+                email: {
+                    ...prevState.email,
+                    value: props.email || "",
+                    valid: true
+                }
+            }
+        })
+    }, [])
+
     const [formIsValid, setFormIsValid] = useState(false)
 
     const orderHandler = (event) => {
         event.preventDefault()
         const formData = {}
+        console.log(orderForm)
         for (let formElementIdentifier in orderForm) {
             formData[formElementIdentifier] = orderForm[formElementIdentifier].value
         }
@@ -196,7 +211,8 @@ const mapStateToProps = state => {
         totalPrice: state.burgerBuilder.totalPrice,
         loading: state.order.loading,
         token: state.auth.token,
-        userId: state.auth.userId
+        userId: state.auth.userId,
+        email: state.auth.email
     }
 }
 
